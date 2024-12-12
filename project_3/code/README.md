@@ -1,0 +1,2 @@
+-For program to run we need "datasets" and "embeddings" folder inside the "code" folder
+-Run using "python main.py EMB_DIM MODEL" out of the available choice (DNN,LSTM,SA (Simple Attention),MA (Multihead Attention,TA(Transformer))
