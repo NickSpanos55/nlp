@@ -92,7 +92,7 @@ The results for two datasets and three embedding dimensionalities are summarized
 
 Increasing embedding dimensionality captures more information, resulting in better model performance but slower training.
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_2.jpg" alt="YCbCr Color Space Diagram" style="width: 1000px; height: 600px;"/>
+     <img src="./assets/Screenshot_2.jpg" alt="YCbCr Color Space Diagram" style="width: 800px; height: 400px;"/>
 </div>
 ---
 
