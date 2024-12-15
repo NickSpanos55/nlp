@@ -56,7 +56,7 @@ If data on the frequency of specific typos were available (e.g., typing “,” 
 The `fstdraw` command can be used to visualize the L transducer. An example visualization for a subset of characters (a, b, and c) is shown in **Figure 1**.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-    <img src="./assets/Screenshot_1.jpg" alt="YCbCr Color Space Diagram" style="width: 600px; height: 200px;"/>
+    <img src="./assets/Screenshot_1.jpg" alt="YCbCr Color Space Diagram" style="width: 400px; height: 200px;"/>
 </div>
 ---
 
@@ -95,11 +95,11 @@ In contrast, the traversal complexity of a non-deterministic automaton is $$\( O
 ### Step 6: Orthograph Construction
 While the number of edges in a DFA is typically higher than in an NFA (since each state must have a unique transition for every input symbol), DFAs are more efficient for input processing.
 
-We execute the function `fstarcsort`, which sorts the edges of \(L\) and \(V\) based on output and input labels, respectively. Subsequently, we perform `fstcompose` to construct the minimum edit distance spell checker \(S\). This transducer corrects words without utilizing linguistic information, aiming to perform the minimum number of edits to the input word. 
+We execute the function `fstarcsort`, which sorts the edges of $$\(L\)$$ and $$\(V\)$$ based on output and input labels, respectively. Subsequently, we perform `fstcompose` to construct the minimum edit distance spell checker $$\(S\)$$. This transducer corrects words without utilizing linguistic information, aiming to perform the minimum number of edits to the input word. 
 
 The behavior of the transducer varies depending on the weights assigned to edits:
 - **Equal weights for edits**: All possible words with the same number of edits have equal likelihood, as there is no preference for any specific edit.
-- **Different weights for edits**: Certain words become more likely than others. For example, with the configuration \( \text{cost}(\text{insertion}) = \text{cost}(\text{deletion}) = 1 \) and \( \text{cost}(\text{substitution}) = 1.5 \), shorter words contained within the erroneous input are more likely to appear compared to substitutions of characters.
+- **Different weights for edits**: Certain words become more likely than others. For example, with the configuration $$\( \text{cost}(\text{insertion}) = \text{cost}(\text{deletion}) = 1 \)$$ and $$\( \text{cost}(\text{substitution}) = 1.5 \)$$, shorter words contained within the erroneous input are more likely to appear compared to substitutions of characters.
 
 ### Results
 Specific results are shown in **Table 1**.
@@ -149,7 +149,7 @@ The results from `fstprint` are then parsed to produce a table of predicted word
 - **verbose**: `1` to display results.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_6.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+     <img src="./assets/Screenshot_6.jpg" alt="YCbCr Color Space Diagram" style="width: 600px; height: 200px;"/>
 </div>
 
 ---
@@ -201,7 +201,7 @@ Table 6: Results for Spell Checker $$\(LVW\)$$
 Accuracy for the top prediction drops to **35.9%**, primarily due to the introduction of significant bias towards the dictionary, favoring incorrect paths even when they require multiple edits.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_8.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+     <img src="./assets/Screenshot_8.jpg" alt="YCbCr Color Space Diagram" style="width: 600px; height: 200px;"/>
 </div>
 
 ---
