@@ -50,7 +50,9 @@ Finally, tokens are converted into numbers based on the embeddings used. The `lo
 
 After encoding:  
 
-
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
+     <img src="./assets/Screenshot_1.jpg" alt="YCbCr Color Space Diagram" style="width: 800px; height: 200px;"/>
+</div>
 
 ---
 
@@ -90,7 +92,9 @@ The results for two datasets and three embedding dimensionalities are summarized
 | **glove.6B.300d**  | Semeval2017A    | **0.60** | **0.58** | **0.58** |
 
 Increasing embedding dimensionality captures more information, resulting in better model performance but slower training.
-
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
+     <img src="./assets/Screenshot_2.jpg" alt="YCbCr Color Space Diagram" style="width: 800px; height: 200px;"/>
+</div>
 ---
 
 ### 4. Categorization Using Large Language Models (ChatGPT)
