@@ -269,13 +269,13 @@ The custom word embeddings are not trained on a sufficiently large dataset to un
 ## Step 14: Word Embeddings Visualisation
 We present results for triplets: {france, paris, london}, {girls, queen, kings}, {good, taller, tall}
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_9.jpg" alt="YCbCr Color Space Diagram" style="width: 600px; height: 800px;"/>
+     <img src="./assets/Screenshot_9.jpg" alt="YCbCr Color Space Diagram" style="width: 400px; height: 800px;"/>
 </div>
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_10.jpg" alt="YCbCr Color Space Diagram" style="width: 600px; height: 800px;"/>
+     <img src="./assets/Screenshot_10.jpg" alt="YCbCr Color Space Diagram" style="width: 400px; height: 800px;"/>
 </div>
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_11.jpg" alt="YCbCr Color Space Diagram" style="width: 600px; height: 800px;"/>
+     <img src="./assets/Screenshot_11.jpg" alt="YCbCr Color Space Diagram" style="width: 400px; height: 800px;"/>
 </div>
 At this stage, each word embedding consists of 100 dimensions. To visualize these embeddings and observe relationships between words, we need a dimensionality reduction method. For this purpose, we use TensorFlow's online tool to visualize the data in 3 dimensions using **Principal Component Analysis (PCA)**. Additionally, we apply the **T-SNE** algorithm, which converts point similarities into joint probability distributions and attempts to minimize the divergence between these probabilities for low-dimensional embeddings and the original high-dimensional data.
 
@@ -284,12 +284,12 @@ At this stage, each word embedding consists of 100 dimensions. To visualize thes
 #### PCA Visualization for the Word "Country"
 In **Figure 9**, we observe the visualization of word embeddings for the word **"country"** (left) and its closest semantically similar words (right) using PCA. The closest words to "country" are **land**, **place**, and **city**, which are indeed semantically related.
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_12.jpg" alt="YCbCr Color Space Diagram" style="width: 600px; height: 800px;"/>
+     <img src="./assets/Screenshot_12.jpg" alt="YCbCr Color Space Diagram" style="width: 400px; height: 800px;"/>
 </div>
 #### PCA Visualization for the Word "Bible"
 In **Figure 10**, the corresponding results for the word **"bible"** are less satisfactory. 
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_13.jpg" alt="YCbCr Color Space Diagram" style="width: 600px; height: 800px;"/>
+     <img src="./assets/Screenshot_13.jpg" alt="YCbCr Color Space Diagram" style="width: 400px; height: 800px;"/>
 </div>
 Both **Figures 9 and 10** utilize PCA for dimensionality reduction. Using **T-SNE**, the results are similar.
 
