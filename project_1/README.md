@@ -1,9 +1,4 @@
-# Subject: Introduction to Language Representations
-
-## Objective of the 1st Lab Exercise
-The aim of this exercise is to familiarize students with the use of classical and widely-used language representations for natural language processing (NLP).
-
----
+# Language Representations
 
 ## Part 1: Building a Spell Checker
 
@@ -60,18 +55,36 @@ If data on the frequency of specific typos were available (e.g., typing “,” 
 #### Visualization:
 The `fstdraw` command can be used to visualize the L transducer. An example visualization for a subset of characters (a, b, and c) is shown in **Figure 1**.
 
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
+    <img src="./assets/Screenshot_1.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+</div>
 ---
 
 ### Step 5: Constructing a Lexicon Acceptor
 The **V acceptor** accepts any word that belongs to the lexicon, which is essentially the union of all automata that accept the words in the vocabulary. An example visualization for a lexicon with 5 words is shown in **Figure 2**.
 
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
+    <img src="./assets/Screenshot_2.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+</div>
+
 #### Optimization Functions:
 1. **fstrmepsilon**: Removes transitions where the input and output labels are 𝜀. This simplifies the FST and reduces its size. In **Figure 3**, there is no visible change from **Figure 2** since there were no `<epsilon>:<epsilon>` transitions.  
 
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
+    <img src="./assets/Screenshot_3.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+</div>
+
 2. **fstdeterminize**: Converts the FST from a non-deterministic automaton (NFA) to a deterministic automaton (DFA). This ensures that from each state, there is a unique edge for each input label. For example, if we have the words “the” and “tragedie,” they share the same initial state and branch out depending on the input (**Figure 4**). This ensures consistent output for a given input.  
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
+    <img src="./assets/Screenshot_4.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+</div>
 
 3. **fstminimize**: Minimizes the number of states in the FST. This significantly reduces the FST’s size, making it faster to traverse and use. The result is shown in **Figure 5**.
 
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
+    <img src="./assets/Screenshot_5.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+</div>
 ---
 
 ## Efficiency of Deterministic Automata
@@ -135,6 +148,10 @@ The results from `fstprint` are then parsed to produce a table of predicted word
 - **transducer**: The spell checker to use for prediction,
 - **verbose**: `1` to display results.
 
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
+     <img src="./assets/Screenshot_6.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+</div>
+
 ---
 
 ### Step 8: Calculating Edit Costs
@@ -162,7 +179,7 @@ Accuracy for the top prediction improves to **58.97%**, indicating a **10% impro
 ---
 
 ### Step 9: Introducing Word Frequency (Unigram Word Model)
-To further enhance the acceptor \(V\), we incorporate word frequency information from a corpus. We construct an acceptor \(W\), consisting of a single state, which maps each word to itself with a weight corresponding to the negative logarithm of its frequency. The spell checker \(LVW\) is then created by composing the Levenshtein transducer \(L\) with both the vocabulary acceptor \(V\) and the language model \(W\).
+To further enhance the acceptor $$\(V\)$$, we incorporate word frequency information from a corpus. We construct an acceptor $$\(W\)$$, consisting of a single state, which maps each word to itself with a weight corresponding to the negative logarithm of its frequency. The spell checker $$\(LVW\)$$ is then created by composing the Levenshtein transducer $$\(L\)$$ with both the vocabulary acceptor $$\(V\)$$ and the language model $$\(W\)$$.
 
 | Word to Correct | Possible Words (LVW)                      |
 |------------------|-------------------------------------------|
@@ -179,9 +196,13 @@ Table 5: Results for Spell Checker \(LVW\)
 | **dirven**       | driven       | even, in, given                      |
 | **poety**        | poetry       | of, poet, they, the, not             |
 
-Table 6: Results for Spell Checker \(LVW\)
+Table 6: Results for Spell Checker $$\(LVW\)$$
 
 Accuracy for the top prediction drops to **35.9%**, primarily due to the introduction of significant bias towards the dictionary, favoring incorrect paths even when they require multiple edits.
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
+     <img src="./assets/Screenshot_8.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+</div>
 
 ---
 
@@ -198,3 +219,99 @@ Accuracy for the top prediction drops to **35.9%**, primarily due to the introdu
 Table 7: Comparative Results for Spell Checkers
 
 The inclusion of edit frequency information improved performance, while incorporating word frequency data introduced significant bias, reducing overall accuracy.
+
+## Part 2: Familiarization with W2V
+
+### Step 11: Extracting Word2Vec Representations
+
+A more advanced method for representing words is through the use of the Word2Vec model, which creates word embeddings derived from training a neural network that predicts a word based on its context within a sliding window. This allows for feature extraction from words, representing them as numerical vectors.
+
+For this application, we use the **Gensim** library on the Gutenberg corpus to extract custom word embeddings. The neural network consists of a single layer (CBOW model) and is used to produce 100-dimensional word embeddings within a context window of 5 words, trained over 1,000 epochs. The training is conducted on a tokenized corpus, represented as a list of lists of tokenized sentences. Additionally, pretrained GoogleNews vectors are used for comparison.
+
+### Semantic Similarity of Words
+**Table 8** shows the semantically similar words derived from the above process for selected examples.
+
+| Initial Word | Semantically Similar Words | Gutenberg Vectors             | GoogleNews Vectors        |
+|--------------|-----------------------------|-------------------------------|---------------------------|
+| **bible**    | surplice, incitement, headship | Bible, scriptures, scripture |
+| **book**     | written, chronicles, jasher   | tome, books, memoir          |
+| **bank**     | pool, ridge, table            | banks, banking, Bank         |
+| **water**    | waters, river, rivers         | potable_water, Water, sewage |
+
+**Table 8: Semantically Similar Words**
+
+### Observations
+The results from the Gutenberg vectors indeed show semantically similar words. However, the results are not optimal for certain words such as *bank* and *bible*, due to significant dependence on the training set. Since the GoogleNews vectors are produced from training a Word2Vec model on an extensive dataset, they demonstrate better results. Nevertheless, differences in tokenization result in words such as *Bible*, *Bank*, *potable_water*, and *Water* appearing in the output.
+
+---
+
+### Adjusting the Context Window
+
+#### Semantic Analogies
+Another property of Word2Vec is its ability to express semantic analogies algebraically. A semantic analogy is defined as follows: given two pairs of concepts \((a, b)\) and \((c, d)\), there exists a semantic analogy if the statement *“a is to b as c is to d”* holds true. Mathematically, this can be represented as:
+
+$$\[
+w_{\text{analogical}} = w2v(a) - w2v(b) + w2v(d)
+\]$$
+
+**Table 9** displays the results for some triplets.
+
+| Triplet          | Word with Maximum Similarity | Gutenberg Vectors | GoogleNews Vectors |
+|-------------------|-----------------------------|-------------------|---------------------|
+| girls, queen, kings | girls                     | Boys              |
+| good, taller, tall  | taller                    | Better            |
+| france, paris, london | france                 | Britain           |
+
+**Table 9: Words Derived from Vector Analogy**
+
+### Observations
+The custom word embeddings are not trained on a sufficiently large dataset to understand the conceptual relationship expressed in the analogy operation, resulting in incorrect outputs. On the other hand, the GoogleNews vectors are able to grasp the context *“a is to b as c is to d”* and return accurate results.
+## Step 14: Word Embeddings Visualisation
+We present results for triplets: {france, paris, london}, {girls, queen, kings}, {good, taller, tall}
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
+     <img src="./assets/Screenshot_9.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+</div>
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
+     <img src="./assets/Screenshot_10.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+</div>
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
+     <img src="./assets/Screenshot_11.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+</div>
+At this stage, each word embedding consists of 100 dimensions. To visualize these embeddings and observe relationships between words, we need a dimensionality reduction method. For this purpose, we use TensorFlow's online tool to visualize the data in 3 dimensions using **Principal Component Analysis (PCA)**. Additionally, we apply the **T-SNE** algorithm, which converts point similarities into joint probability distributions and attempts to minimize the divergence between these probabilities for low-dimensional embeddings and the original high-dimensional data.
+
+### Observations
+
+#### PCA Visualization for the Word "Country"
+In **Figure 9**, we observe the visualization of word embeddings for the word **"country"** (left) and its closest semantically similar words (right) using PCA. The closest words to "country" are **land**, **place**, and **city**, which are indeed semantically related.
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
+     <img src="./assets/Screenshot_12.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+</div>
+#### PCA Visualization for the Word "Bible"
+In **Figure 10**, the corresponding results for the word **"bible"** are less satisfactory. 
+<div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
+     <img src="./assets/Screenshot_13.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+</div>
+Both **Figures 9 and 10** utilize PCA for dimensionality reduction. Using **T-SNE**, the results are similar.
+
+---
+
+**Figure 9:** Visualization of word embeddings for the word "country" (left) and its closest semantically similar words (right) using PCA.  
+**Figure 10:** Visualization of word embeddings for the word "bible" (left) and its closest semantically similar words (right) using PCA.
+
+## Step 14: Sentiment Analysis with Word2Vec Embeddings
+
+The average of the Word2Vec vectors for each word in a sentence can provide a representation of the sentence, known as the **Neural Bag of Words (NBOW)**. In this step, we use these representations for sentiment analysis on movie reviews.
+
+We construct two NBOWs: one from the custom embeddings created from the Gutenberg corpus and one from the GoogleNews vectors. The NBOWs are built by calculating the average of the word embeddings in a sentence and concatenating them into an array. For **Out-Of-Vocabulary (OOV)** words, we add a zero vector. Classification was performed using **Logistic Regression** with the solver set to `LBFGS` for 200 iterations.
+
+The results for the two NBOWs are shown in **Table 11**:
+
+| Model              | Accuracy   |
+|---------------------|------------|
+| Custom Embeddings   | 74.8%      |
+| GoogleNews Vectors  | 82.53%     |
+
+**Table 11: Results for the Two NBOWs**
+
+### Observations
+The model using GoogleNews embeddings demonstrated better performance. Generally, to improve the model's performance, it would be ideal to have access to more data with a wide variety of contexts. This is crucial since the same words can carry different emotional connotations depending on the context. Additionally, incorporating punctuation marks, such as exclamation points, could further enhance the model's performance.
