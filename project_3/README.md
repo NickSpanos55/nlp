@@ -5,9 +5,8 @@ The goal is to implement a model for processing and categorizing text using **De
 
 ---
 
-### Lab Preparation
 
-#### 1. Data Preprocessing
+### 1. Data Preprocessing
 
 **1.1 Label Encoding**  
 For preparation, the steps were performed on the MR dataset (Sentence Polarity Dataset). Initially, to utilize the dataset labels, we need to convert them into numerical form. We used the **LabelEncoder** from `scikit-learn` and applied `fit` and `transform` on all the dataset labels. Below are the first 10 labels and their encoding:
@@ -51,7 +50,7 @@ Finally, tokens are converted into numbers based on the embeddings used. The `lo
 After encoding:  
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_1.jpg" alt="YCbCr Color Space Diagram" style="width: 800px; height: 200px;"/>
+     <img src="./assets/Screenshot_1.jpg" alt="YCbCr Color Space Diagram" style="width: 400px; height: 200px;"/>
 </div>
 
 ---
@@ -93,7 +92,7 @@ The results for two datasets and three embedding dimensionalities are summarized
 
 Increasing embedding dimensionality captures more information, resulting in better model performance but slower training.
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_2.jpg" alt="YCbCr Color Space Diagram" style="width: 800px; height: 200px;"/>
+     <img src="./assets/Screenshot_2.jpg" alt="YCbCr Color Space Diagram" style="width: 800px; height: 600px;"/>
 </div>
 ---
 
@@ -113,11 +112,10 @@ Using appropriate prompts, we gained information about its categorization proces
 > - **Neutral indicators**: *fact, information, data, report, analysis, study*  
 > *These words help determine overall sentiment.”*
 
-# Analysis of Questions 6–8
 
 ---
 
-## Question 6 – Pre-Trained Transformers
+## 5. Pre-Trained Transformers
 
 ### Performance Metrics on MR Dataset
 
@@ -143,7 +141,7 @@ The Siebert and DistilBERT models outperform the rest as they are fine-tuned for
 
 ---
 
-## Question 7 – Fine-Tuning
+## 6. Fine-Tuning
 
 ### Performance Metrics After Fine-Tuning on MR Dataset
 
@@ -174,7 +172,7 @@ Fine-tuning is a critical process to specialize a large language model (LLM) for
 
 ---
 
-## Question 8 – ChatGPT's Code Explanation, Evaluation, and Refactoring
+## 7. ChatGPT's Code Explanation, Evaluation, and Refactoring
 
 ### Code Explanation
 
