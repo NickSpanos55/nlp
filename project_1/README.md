@@ -201,7 +201,7 @@ Table 6: Results for Spell Checker $$\(LVW\)$$
 Accuracy for the top prediction drops to **35.9%**, primarily due to the introduction of significant bias towards the dictionary, favoring incorrect paths even when they require multiple edits.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_8.jpg" alt="YCbCr Color Space Diagram" style="width: 600px; height: 200px;"/>
+     <img src="./assets/Screenshot_8.jpg" alt="YCbCr Color Space Diagram" style="width: 800px; height: 200px;"/>
 </div>
 
 ---
