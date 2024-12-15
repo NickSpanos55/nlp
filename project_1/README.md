@@ -56,7 +56,7 @@ If data on the frequency of specific typos were available (e.g., typing “,” 
 The `fstdraw` command can be used to visualize the L transducer. An example visualization for a subset of characters (a, b, and c) is shown in **Figure 1**.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-    <img src="./assets/Screenshot_1.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+    <img src="./assets/Screenshot_1-removebg-preview.png" alt="YCbCr Color Space Diagram" style="width: 800px; height: 200px;"/>
 </div>
 ---
 
@@ -64,26 +64,26 @@ The `fstdraw` command can be used to visualize the L transducer. An example visu
 The **V acceptor** accepts any word that belongs to the lexicon, which is essentially the union of all automata that accept the words in the vocabulary. An example visualization for a lexicon with 5 words is shown in **Figure 2**.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-    <img src="./assets/Screenshot_2.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+    <img src="./assets/Screenshot_2-removebg-preview.png" alt="YCbCr Color Space Diagram" style="width: 800px; height: 200px;"/>
 </div>
 
 #### Optimization Functions:
 1. **fstrmepsilon**: Removes transitions where the input and output labels are 𝜀. This simplifies the FST and reduces its size. In **Figure 3**, there is no visible change from **Figure 2** since there were no `<epsilon>:<epsilon>` transitions.  
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-    <img src="./assets/Screenshot_3.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+    <img src="./assets/Screenshot_3-removebg-preview.png" alt="YCbCr Color Space Diagram" style="width: 800px; height: 200px;"/>
 </div>
 
 2. **fstdeterminize**: Converts the FST from a non-deterministic automaton (NFA) to a deterministic automaton (DFA). This ensures that from each state, there is a unique edge for each input label. For example, if we have the words “the” and “tragedie,” they share the same initial state and branch out depending on the input (**Figure 4**). This ensures consistent output for a given input.  
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-    <img src="./assets/Screenshot_4.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+    <img src="./assets/Screenshot_4-removebg-preview.png" alt="YCbCr Color Space Diagram" style="width: 800px; height: 200px;"/>
 </div>
 
 3. **fstminimize**: Minimizes the number of states in the FST. This significantly reduces the FST’s size, making it faster to traverse and use. The result is shown in **Figure 5**.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-    <img src="./assets/Screenshot_5.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+    <img src="./assets/Screenshot_5-removebg-preview.png" alt="YCbCr Color Space Diagram" style="width: 8800px; height: 200px;"/>
 </div>
 ---
 
@@ -95,11 +95,11 @@ In contrast, the traversal complexity of a non-deterministic automaton is $$\( O
 ### Step 6: Orthograph Construction
 While the number of edges in a DFA is typically higher than in an NFA (since each state must have a unique transition for every input symbol), DFAs are more efficient for input processing.
 
-We execute the function `fstarcsort`, which sorts the edges of \(L\) and \(V\) based on output and input labels, respectively. Subsequently, we perform `fstcompose` to construct the minimum edit distance spell checker \(S\). This transducer corrects words without utilizing linguistic information, aiming to perform the minimum number of edits to the input word. 
+We execute the function `fstarcsort`, which sorts the edges of $$\(L\)$$ and $$\(V\)$$ based on output and input labels, respectively. Subsequently, we perform `fstcompose` to construct the minimum edit distance spell checker $$\(S\)$$. This transducer corrects words without utilizing linguistic information, aiming to perform the minimum number of edits to the input word. 
 
 The behavior of the transducer varies depending on the weights assigned to edits:
 - **Equal weights for edits**: All possible words with the same number of edits have equal likelihood, as there is no preference for any specific edit.
-- **Different weights for edits**: Certain words become more likely than others. For example, with the configuration \( \text{cost}(\text{insertion}) = \text{cost}(\text{deletion}) = 1 \) and \( \text{cost}(\text{substitution}) = 1.5 \), shorter words contained within the erroneous input are more likely to appear compared to substitutions of characters.
+- **Different weights for edits**: Certain words become more likely than others. For example, with the configuration $$\( \text{cost}(\text{insertion}) = \text{cost}(\text{deletion}) = 1 \)$$ and $$\( \text{cost}(\text{substitution}) = 1.5 \)$$, shorter words contained within the erroneous input are more likely to appear compared to substitutions of characters.
 
 ### Results
 Specific results are shown in **Table 1**.
@@ -149,7 +149,7 @@ The results from `fstprint` are then parsed to produce a table of predicted word
 - **verbose**: `1` to display results.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_6.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+     <img src="./assets/Screenshot_6-removebg-preview.png" alt="YCbCr Color Space Diagram" style="width: 800px; height: 200px;"/>
 </div>
 
 ---
@@ -201,7 +201,7 @@ Table 6: Results for Spell Checker $$\(LVW\)$$
 Accuracy for the top prediction drops to **35.9%**, primarily due to the introduction of significant bias towards the dictionary, favoring incorrect paths even when they require multiple edits.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_8.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+     <img src="./assets/Screenshot_8-removebg-preview.png" alt="YCbCr Color Space Diagram" style="width: 800px; height: 200px;"/>
 </div>
 
 ---
@@ -269,13 +269,13 @@ The custom word embeddings are not trained on a sufficiently large dataset to un
 ## Step 14: Word Embeddings Visualisation
 We present results for triplets: {france, paris, london}, {girls, queen, kings}, {good, taller, tall}
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_9.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+     <img src="./assets/Screenshot_9.jpg" alt="YCbCr Color Space Diagram" style="width: 600px; height: 600px;"/>
 </div>
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_10.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+     <img src="./assets/Screenshot_10.jpg" alt="YCbCr Color Space Diagram" style="width: 600px; height: 600px;"/>
 </div>
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_11.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+     <img src="./assets/Screenshot_11.jpg" alt="YCbCr Color Space Diagram" style="width: 600px; height: 600px;"/>
 </div>
 At this stage, each word embedding consists of 100 dimensions. To visualize these embeddings and observe relationships between words, we need a dimensionality reduction method. For this purpose, we use TensorFlow's online tool to visualize the data in 3 dimensions using **Principal Component Analysis (PCA)**. Additionally, we apply the **T-SNE** algorithm, which converts point similarities into joint probability distributions and attempts to minimize the divergence between these probabilities for low-dimensional embeddings and the original high-dimensional data.
 
@@ -284,12 +284,12 @@ At this stage, each word embedding consists of 100 dimensions. To visualize thes
 #### PCA Visualization for the Word "Country"
 In **Figure 9**, we observe the visualization of word embeddings for the word **"country"** (left) and its closest semantically similar words (right) using PCA. The closest words to "country" are **land**, **place**, and **city**, which are indeed semantically related.
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_12.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+     <img src="./assets/Screenshot_12.jpg" alt="YCbCr Color Space Diagram" style="width: 600px; height: 600px;"/>
 </div>
 #### PCA Visualization for the Word "Bible"
 In **Figure 10**, the corresponding results for the word **"bible"** are less satisfactory. 
 <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 0 auto;">
-     <img src="./assets/Screenshot_13.jpg" alt="YCbCr Color Space Diagram" style="width: 200px; height: 200px;"/>
+     <img src="./assets/Screenshot_13.jpg" alt="YCbCr Color Space Diagram" style="width: 600px; height: 600px;"/>
 </div>
 Both **Figures 9 and 10** utilize PCA for dimensionality reduction. Using **T-SNE**, the results are similar.
 
